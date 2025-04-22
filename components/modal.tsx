@@ -78,8 +78,9 @@ export default function Modal() {
           backdropFilter: "blur(20px)",
           backgroundColor: "rgba(245, 245, 245, 0.5)",
         }}
+        className="md:pb-12"
       >
-        <div className="sticky top-3 z-20 flex h-0 w-full items-center justify-end px-3 mix-blend-difference md:top-12 md:px-6 md:pb-12">
+        <div className="sticky top-3 z-20 flex h-0 w-full items-center justify-end px-3 mix-blend-difference md:top-12 md:px-6">
           <motion.button
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
