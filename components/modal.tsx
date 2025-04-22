@@ -174,7 +174,7 @@ const Item = ({
         once: true,
       }}
       transition={{ staggerChildren: 0.2 }}
-      className="group relative aspect-[3] cursor-none border-b not-md:p-3"
+      className="group relative cursor-none border-b not-md:p-3 md:aspect-[3]"
     >
       <AnimatePresence>
         {playVideo ? (
@@ -226,15 +226,19 @@ const Item = ({
           <p className="max-w-[52ch] text-fluid-base">{description}</p>
           <button className="font-akira text-fluid-sm md:hidden">play</button>
         </motion.div>
-        <motion.img
+        <motion.div
           variants={{
             init: { opacity: 0 },
             inView: { opacity: 1 },
           }}
-          className="object-contain object-top-right opacity-25 brightness-50 grayscale transition-all not-md:absolute not-md:inset-0 not-md:h-full md:max-w-md md:group-hover:opacity-50 md:group-hover:grayscale-0"
-          src={imageSrc}
-          alt=""
-        />
+          className="not-md:absolute not-md:inset-0 not-md:h-full md:max-w-md"
+        >
+          <img
+            className="h-full w-full object-contain object-top-right opacity-25 brightness-50 grayscale transition-all md:group-hover:opacity-50 md:group-hover:grayscale-0"
+            src={imageSrc}
+            alt=""
+          />
+        </motion.div>
       </div>
     </motion.div>
   );
