@@ -12,7 +12,7 @@ export default function ProceedDeeper() {
       <motion.a
         initial="init"
         whileHover="hover"
-        href="https://hexarchive.com"
+        href="https://hexarchive.com/welcome"
         className="relative block"
       >
         <GlitchText text="feel like going deeper?" />
