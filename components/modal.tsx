@@ -68,7 +68,7 @@ export default function Modal() {
   }[modal.kind];
 
   return (
-    <ReactLenis className="fixed inset-0 z-50 scrollbar-none h-svh overflow-auto">
+    <ReactLenis className="fixed inset-0 z-50 scrollbar-none h-dvh overflow-auto">
       <motion.div
         initial={{
           backdropFilter: "blur(0px)",
@@ -85,7 +85,7 @@ export default function Modal() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
-            className="font-akira text-fluid-sm text-white md:-mt-8"
+            className="cursor-pointer font-akira text-fluid-sm text-white md:-mt-8"
             onClick={() => setModal(null)}
           >
             close
