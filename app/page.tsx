@@ -1,6 +1,7 @@
 import Credits from "@/components/credits";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import Modal from "@/components/modal";
 import ProceedDeeper from "@/components/proceed-deeper";
 import Welcome from "@/components/welcome";
 import WhatAreYouLookingFor from "@/components/what-are-you-looking-for";
@@ -16,6 +17,7 @@ export default function Guestroom() {
       <WhatsThis />
       <Credits />
       <Footer />
+      <Modal />
     </>
   );
 }

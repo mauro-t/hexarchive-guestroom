@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useInView, useMotionValue } from "motion/react";
 import { useEffect, useRef } from "react";
+import { motion, useInView, useMotionValue } from "motion/react";
+import { useAppContext } from "./app-context";
 
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -9,7 +10,7 @@ export default function GlitchText({ text }: { text: string }) {
   const display = useMotionValue("");
   const ref = useRef(null);
   const inView = useInView(ref, { margin: "0px 0px -50px 0px", once: true });
-
+  const { modal } = useAppContext();
   useEffect(() => {
     let iterations = 0;
     if (!inView) return;
@@ -34,7 +35,7 @@ export default function GlitchText({ text }: { text: string }) {
   return (
     <motion.h2
       ref={ref}
-      animate={{ opacity: inView ? 1 : 0 }}
+      animate={{ opacity: inView && !modal ? 1 : 0 }}
       className="font-ot-jubilee text-fluid-md uppercase"
     >
       <div className="relative">

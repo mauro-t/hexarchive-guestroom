@@ -1,4 +1,5 @@
 "use client";
+import { useRef } from "react";
 import { motion } from "motion/react";
 import { useAppContext } from "./app-context";
 import VideoToCanvas from "./video-to-canvas";
@@ -11,6 +12,7 @@ const Section = ({
   videoSrc: "projects" | "showreel" | "spots";
 }) => {
   const context = useAppContext();
+  const ref = useRef<HTMLDivElement>(null);
 
   const videoRef = {
     projects: context.projectsVideoRef,
@@ -18,9 +20,17 @@ const Section = ({
     spots: context.spotsVideoRef,
   }[videoSrc];
 
+  function handleClick() {
+    if (!ref.current) return;
+    context.setModal({
+      kind: videoSrc,
+      anchorBounds: ref.current.getBoundingClientRect(),
+    });
+  }
+
   return (
     <>
-      <li className="group contents cursor-pointer">
+      <li className="group contents cursor-pointer" onClick={handleClick}>
         <motion.div
           variants={{ init: { opacity: 0 }, inView: { opacity: 1 } }}
           className="flex items-center gap-2 py-6 md:p-6"
@@ -38,7 +48,10 @@ const Section = ({
           }}
           transition={{ duration: 1, at: "<" }}
         >
-          <div className="relative h-full opacity-75 grayscale transition-all clip-video group-hover:opacity-100 group-hover:grayscale-0">
+          <div
+            ref={ref}
+            className="relative h-full opacity-75 grayscale transition-all clip-video group-hover:opacity-100 group-hover:grayscale-0"
+          >
             <VideoToCanvas videoRef={videoRef} />
           </div>
         </motion.div>
