@@ -44,8 +44,9 @@ export default function AppProvider({
   const lenis = useLenis();
 
   useEffect(() => {
-    if (modal) lenis?.stop();
-    else lenis?.start();
+    if (!lenis) return;
+    if (modal) lenis.stop();
+    else lenis.start();
   }, [lenis, modal]);
 
   return (

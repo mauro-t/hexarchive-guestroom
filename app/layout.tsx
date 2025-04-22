@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scrollbar-none">
       <body
-        className={`${fonts.AkiraBold.variable} ${fonts.AkiraOutline.variable} ${fonts.OTJubileeDiamond.variable} min-h-svh bg-white font-ot-jubilee text-black/75 antialiased`}
+        className={`${fonts.AkiraBold.variable} ${fonts.AkiraOutline.variable} ${fonts.OTJubileeDiamond.variable} bg-white font-ot-jubilee text-black/75 antialiased`}
       >
         <MotionConfig transition={{ duration: 0.7, easings: [0.6, 0, 0.2, 1] }}>
           <ReactLenis root>

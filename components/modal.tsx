@@ -9,6 +9,7 @@ import {
 } from "motion/react";
 import { useAppContext } from "./app-context";
 import VideoToCanvas from "./video-to-canvas";
+import ReactLenis from "lenis/react";
 
 export default function Modal() {
   const { modal, setModal, projectsVideoRef, showreelVideoRef, spotsVideoRef } =
@@ -67,81 +68,81 @@ export default function Modal() {
   }[modal.kind];
 
   return (
-    <motion.div
-      initial={{
-        backdropFilter: "blur(0px)",
-        backgroundColor: "rgba(245, 245, 245, 0)",
-      }}
-      animate={{
-        backdropFilter: "blur(20px)",
-        backgroundColor: "rgba(245, 245, 245, 0.5)",
-      }}
-      data-lenis-prevent
-      className="fixed inset-0 z-50 scrollbar-none h-svh overflow-auto md:py-12"
-    >
-      <div className="sticky top-3 z-20 flex h-0 w-full items-center justify-end px-3 mix-blend-difference md:top-12 md:px-6">
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-          className="font-akira text-fluid-sm text-white md:-mt-8"
-          onClick={() => setModal(null)}
-        >
-          close
-        </motion.button>
-      </div>
-      <div className="relative z-10 aspect-video w-full md:aspect-[3]">
-        <div ref={lastRef} className="relative h-full w-full">
-          <VideoToCanvas videoRef={videoRef} />
-        </div>
-      </div>
+    <ReactLenis className="fixed inset-0 z-50 scrollbar-none h-svh overflow-auto md:pb-12">
       <motion.div
-        initial="init"
-        animate="open"
-        variants={{ open: { transition: { staggerChildren: 0.2 } } }}
-        className="mt-12 mb-6 flex items-center gap-6 px-3 md:my-12 md:px-6"
+        initial={{
+          backdropFilter: "blur(0px)",
+          backgroundColor: "rgba(245, 245, 245, 0)",
+        }}
+        animate={{
+          backdropFilter: "blur(20px)",
+          backgroundColor: "rgba(245, 245, 245, 0.5)",
+        }}
       >
-        <h2 className="w-max overflow-hidden font-akira text-fluid-lg md:text-fluid-2xl">
-          <motion.div variants={{ init: { y: "100%" }, open: { y: "0%" } }}>
-            {title}
-          </motion.div>
-        </h2>
+        <div className="sticky top-3 z-20 flex h-0 w-full items-center justify-end px-3 mix-blend-difference md:top-12 md:px-6">
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+            className="font-akira text-fluid-sm text-white md:-mt-8"
+            onClick={() => setModal(null)}
+          >
+            close
+          </motion.button>
+        </div>
+        <div className="relative z-10 aspect-video w-full md:aspect-[3]">
+          <div ref={lastRef} className="relative h-full w-full">
+            <VideoToCanvas videoRef={videoRef} />
+          </div>
+        </div>
         <motion.div
-          style={{ originX: "left" }}
-          variants={{
-            init: { scaleX: 0 },
-            open: { scaleX: 1 },
-          }}
-          className="h-px grow bg-current"
-        ></motion.div>
+          initial="init"
+          animate="open"
+          variants={{ open: { transition: { staggerChildren: 0.2 } } }}
+          className="mt-12 mb-6 flex items-center gap-6 px-3 md:my-12 md:px-6"
+        >
+          <h2 className="w-max overflow-hidden font-akira text-fluid-lg md:text-fluid-2xl">
+            <motion.div variants={{ init: { y: "100%" }, open: { y: "0%" } }}>
+              {title}
+            </motion.div>
+          </h2>
+          <motion.div
+            style={{ originX: "left" }}
+            variants={{
+              init: { scaleX: 0 },
+              open: { scaleX: 1 },
+            }}
+            className="h-px grow bg-current"
+          ></motion.div>
+        </motion.div>
+        <div className="mt-6 grid grid-cols-1 gap-12 px-3 md:mt-24 md:space-y-24 md:px-6">
+          <Item
+            videoSrc="https://player.vimeo.com/video/975380835?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+            imageSrc="/mjolnir.webp"
+            title="Title"
+            description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium ex, tempore labore aliquam dolorem error cupiditate iusto."
+          />
+          <Item
+            videoSrc="https://www.youtube-nocookie.com/embed/AQCEb9HKO98?si=Uoq0LDvKnmORClQZ"
+            imageSrc="/geralt.webp"
+            title="Title"
+            description="Veritatis porro accusamus debitis sunt, id aut vero aperiam. Reiciendis voluptatum neque aliquam reprehenderit? Fugiat illo reiciendis deleniti, dolore atque assumenda. Aliquid cum dolorem illo magni corrupti neque eos vero officia dolore porro."
+          />
+          <Item
+            videoSrc="https://www.youtube-nocookie.com/embed/AQCEb9HKO98?si=Uoq0LDvKnmORClQZ"
+            imageSrc="/geralt.webp"
+            title="Title"
+            description="Veritatis porro accusamus debitis sunt, id aut vero aperiam. Reiciendis voluptatum neque aliquam reprehenderit? Fugiat illo reiciendis deleniti, dolore atque assumenda. Aliquid cum dolorem illo magni corrupti neque eos vero officia dolore porro."
+          />
+          <Item
+            videoSrc="https://www.youtube-nocookie.com/embed/AQCEb9HKO98?si=Uoq0LDvKnmORClQZ"
+            imageSrc="/geralt.webp"
+            title="Title"
+            description="Veritatis porro accusamus debitis sunt, id aut vero aperiam. Reiciendis voluptatum neque aliquam reprehenderit? Fugiat illo reiciendis deleniti, dolore atque assumenda. Aliquid cum dolorem illo magni corrupti neque eos vero officia dolore porro."
+          />
+        </div>
       </motion.div>
-      <div className="mt-6 grid grid-cols-1 gap-12 px-3 md:mt-24 md:space-y-24 md:px-6">
-        <Item
-          videoSrc="https://player.vimeo.com/video/975380835?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-          imageSrc="/mjolnir.webp"
-          title="Title"
-          description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium ex, tempore labore aliquam dolorem error cupiditate iusto."
-        />
-        <Item
-          videoSrc="https://www.youtube-nocookie.com/embed/AQCEb9HKO98?si=Uoq0LDvKnmORClQZ"
-          imageSrc="/geralt.webp"
-          title="Title"
-          description="Veritatis porro accusamus debitis sunt, id aut vero aperiam. Reiciendis voluptatum neque aliquam reprehenderit? Fugiat illo reiciendis deleniti, dolore atque assumenda. Aliquid cum dolorem illo magni corrupti neque eos vero officia dolore porro."
-        />
-        <Item
-          videoSrc="https://www.youtube-nocookie.com/embed/AQCEb9HKO98?si=Uoq0LDvKnmORClQZ"
-          imageSrc="/geralt.webp"
-          title="Title"
-          description="Veritatis porro accusamus debitis sunt, id aut vero aperiam. Reiciendis voluptatum neque aliquam reprehenderit? Fugiat illo reiciendis deleniti, dolore atque assumenda. Aliquid cum dolorem illo magni corrupti neque eos vero officia dolore porro."
-        />
-        <Item
-          videoSrc="https://www.youtube-nocookie.com/embed/AQCEb9HKO98?si=Uoq0LDvKnmORClQZ"
-          imageSrc="/geralt.webp"
-          title="Title"
-          description="Veritatis porro accusamus debitis sunt, id aut vero aperiam. Reiciendis voluptatum neque aliquam reprehenderit? Fugiat illo reiciendis deleniti, dolore atque assumenda. Aliquid cum dolorem illo magni corrupti neque eos vero officia dolore porro."
-        />
-      </div>
-    </motion.div>
+    </ReactLenis>
   );
 }
 
