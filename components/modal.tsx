@@ -9,7 +9,6 @@ import {
 } from "motion/react";
 import { useAppContext } from "./app-context";
 import VideoToCanvas from "./video-to-canvas";
-import { init } from "next/dist/compiled/webpack/webpack";
 
 export default function Modal() {
   const { modal, setModal, projectsVideoRef, showreelVideoRef, spotsVideoRef } =
