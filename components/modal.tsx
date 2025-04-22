@@ -77,7 +77,7 @@ export default function Modal() {
         backgroundColor: "rgba(245, 245, 245, 0.5)",
       }}
       data-lenis-prevent
-      className="fixed inset-0 z-50 h-svh overflow-auto md:py-12"
+      className="fixed inset-0 z-50 scrollbar-none h-svh overflow-auto md:py-12"
     >
       <div className="sticky top-3 z-20 flex h-0 w-full items-center justify-end px-3 mix-blend-difference md:top-12 md:px-6">
         <motion.button

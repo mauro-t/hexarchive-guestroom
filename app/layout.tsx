@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scrollbar-none">
       <body
         className={`${fonts.AkiraBold.variable} ${fonts.AkiraOutline.variable} ${fonts.OTJubileeDiamond.variable} min-h-svh bg-white font-ot-jubilee text-black/75 antialiased`}
       >
