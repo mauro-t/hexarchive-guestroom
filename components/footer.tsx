@@ -11,7 +11,7 @@ import Logo from "./logo";
 import { useState } from "react";
 
 export default function Footer() {
-  const [contactsOpen, setContactsOpen] = useState(true);
+  const [contactsOpen, setContactsOpen] = useState(false);
   return (
     <>
       <footer>
