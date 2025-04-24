@@ -6,7 +6,7 @@ import ProceedDeeper from "@/components/proceed-deeper";
 import Welcome from "@/components/welcome";
 import WhatAreYouLookingFor from "@/components/what-are-you-looking-for";
 import WhatsThis from "@/components/whats-this";
-import { defineQuery } from "next-sanity";
+import { defineQuery, PortableTextBlock } from "next-sanity";
 import { sanityFetch } from "@/sanity/live";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -49,9 +49,10 @@ export default async function Guestroom() {
       query: CREDITS_QUERY,
     });
 
-  const { data: whatsThis }: { data: { content: any }[] } = await sanityFetch({
-    query: WHATSTHIS_QUERY,
-  });
+  const { data: whatsThis }: { data: { content: PortableTextBlock }[] } =
+    await sanityFetch({
+      query: WHATSTHIS_QUERY,
+    });
   console.log(credits[0]);
   return (
     <>

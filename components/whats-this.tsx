@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import hand from "@/assets/images/hand.png";
-import { PortableText } from "next-sanity";
+import { PortableText, type PortableTextBlock } from "next-sanity";
 
-export default function WhatsThis({ content }: { content: any }) {
+export default function WhatsThis({ content }: { content: PortableTextBlock }) {
   return (
     <motion.section
       initial="init"
