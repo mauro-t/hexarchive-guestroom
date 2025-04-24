@@ -22,6 +22,8 @@ const urlFor = (source: SanityImageSource) =>
 const SPOTS_QUERY = defineQuery(`*[_type == "spot"]`);
 const PROJECTS_QUERY = defineQuery(`*[_type == "project"]`);
 const SHOWREEL_QUERY = defineQuery(`*[_type == "showreel"]`);
+const CREDITS_QUERY = defineQuery(`*[_type == "credits"]`);
+const WHATSTHIS_QUERY = defineQuery(`*[_type == "whatsThis"]`);
 
 export type Content = {
   _id: string;
@@ -42,14 +44,23 @@ export default async function Guestroom() {
     query: SHOWREEL_QUERY,
   });
 
+  const { data: credits }: { data: { images: SanityImageSource[] }[] } =
+    await sanityFetch({
+      query: CREDITS_QUERY,
+    });
+
+  const { data: whatsThis }: { data: { content: any }[] } = await sanityFetch({
+    query: WHATSTHIS_QUERY,
+  });
+  console.log(credits[0]);
   return (
     <>
       <Header />
       <Welcome />
       <WhatAreYouLookingFor />
       <ProceedDeeper />
-      <WhatsThis />
-      <Credits />
+      <WhatsThis content={whatsThis[0].content} />
+      <Credits credits={credits[0].images.map((i) => urlFor(i)?.url())} />
       <Footer />
       <Modal
         projects={projects.map((p) => ({

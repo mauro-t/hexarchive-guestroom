@@ -7,7 +7,11 @@ import {
 } from "motion/react";
 import { useEffect } from "react";
 
-export default function Credits() {
+export default function Credits({
+  credits,
+}: {
+  credits: (string | undefined)[];
+}) {
   const [scope, animate] = useAnimate();
 
   useEffect(() => {
@@ -54,19 +58,11 @@ export default function Credits() {
       </h2>
       <div className="w-full overflow-hidden opacity-75 transition-opacity md:opacity-20 md:group-hover:opacity-75">
         <motion.div ref={scope} className="flex grayscale">
-          {[...new Array(11).keys()].map((k) => (
-            <img
-              key={k}
-              className="w-1/3 max-w-xs flex-none"
-              src={`/credits/${k + 1}.webp`}
-            />
+          {credits.map((k) => (
+            <img key={k} className="w-1/3 max-w-xs flex-none" src={k} />
           ))}
-          {[...new Array(11).keys()].map((k) => (
-            <img
-              key={k}
-              className="w-1/3 max-w-xs flex-none"
-              src={`/credits/${k + 1}.webp`}
-            />
+          {credits.map((k) => (
+            <img key={k} className="w-1/3 max-w-xs flex-none" src={k} />
           ))}
         </motion.div>
       </div>

@@ -76,6 +76,30 @@ const spotType = defineType({
   ],
 });
 
+const credits = defineType({
+  name: "credits",
+  type: "document",
+  fields: [
+    defineField({
+      name: "images",
+      type: "array",
+      of: [{ type: "image" }],
+    }),
+  ],
+});
+
+const whatsThis = defineType({
+  name: "whatsThis",
+  type: "document",
+  fields: [
+    defineField({
+      name: "content",
+      type: "array",
+      of: [{ type: "block" }],
+    }),
+  ],
+});
+
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [projectType, spotType, showreelType],
+  types: [projectType, spotType, showreelType, credits, whatsThis],
 };

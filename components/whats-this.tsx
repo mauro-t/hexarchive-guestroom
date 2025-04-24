@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import hand from "@/assets/images/hand.png";
+import { PortableText } from "next-sanity";
 
-export default function WhatsThis() {
+export default function WhatsThis({ content }: { content: any }) {
   return (
     <motion.section
       initial="init"
@@ -30,20 +31,22 @@ export default function WhatsThis() {
             }}
             className="mt-6 max-w-[52ch] font-ot-jubilee text-fluid-base"
           >
-            <p>
-              <em>Hex Archive</em> is an Italian audio production studio based
-              in Venice and Turin, whose <em>goal</em> is to{" "}
-              <em>establish a custom and unique generative process</em> around
-              each production we face, always <em>starting from scratch</em>.
-            </p>
-
-            <p>
-              Through a series of partnerships with other trusted companies and
-              contractors <strong>we’ve built a modular</strong> structure that
-              allows us to <strong>shape ourselves</strong> around each scope
-              and size.
-            </p>
-            <ul style={{ listStyleType: "'⟐ '" }} className="mt-6 list-inside">
+            <PortableText
+              value={content}
+              components={{
+                list: {
+                  bullet: ({ children }) => (
+                    <ul
+                      style={{ listStyleType: "'⟐ '" }}
+                      className="mt-6 list-inside"
+                    >
+                      {children}
+                    </ul>
+                  ),
+                },
+              }}
+            />
+            {/* <ul style={{ listStyleType: "'⟐ '" }} className="mt-6 list-inside">
               <li>
                 <em>sound design</em>
               </li>
@@ -56,7 +59,7 @@ export default function WhatsThis() {
               <li>
                 <em>audio implementation</em>
               </li>
-            </ul>
+            </ul> */}
           </motion.div>
         </div>
         <div className="opacity-5 max-md:col-start-1 max-md:row-start-1 md:opacity-75">
