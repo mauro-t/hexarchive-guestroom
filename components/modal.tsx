@@ -10,8 +10,25 @@ import {
 import { useAppContext } from "./app-context";
 import VideoToCanvas from "./video-to-canvas";
 import ReactLenis from "lenis/react";
+import Image from "next/image";
 
-export default function Modal() {
+type Content = {
+  _id: string;
+  title: string;
+  description: string;
+  videoUrl: string;
+  image: string | undefined;
+}[];
+
+export default function Modal({
+  projects,
+  spots,
+  showreel,
+}: {
+  projects: Content;
+  spots: Content;
+  showreel: Content;
+}) {
   const { modal, setModal, projectsVideoRef, showreelVideoRef, spotsVideoRef } =
     useAppContext();
   const [lastRef, animate] = useAnimate();
@@ -67,6 +84,8 @@ export default function Modal() {
     spots: "spots",
   }[modal.kind];
 
+  const content = { projects, spots, showreel }[modal.kind];
+
   return (
     <ReactLenis className="fixed inset-0 z-50 scrollbar-none h-dvh overflow-auto">
       <motion.div
@@ -117,30 +136,15 @@ export default function Modal() {
           ></motion.div>
         </motion.div>
         <div className="mt-6 grid grid-cols-1 gap-12 px-3 md:mt-24 md:space-y-24 md:px-6">
-          <Item
-            videoSrc="https://player.vimeo.com/video/975380835?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-            imageSrc="/mjolnir.webp"
-            title="Title"
-            description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium ex, tempore labore aliquam dolorem error cupiditate iusto."
-          />
-          <Item
-            videoSrc="https://www.youtube-nocookie.com/embed/AQCEb9HKO98?si=Uoq0LDvKnmORClQZ"
-            imageSrc="/geralt.webp"
-            title="Title"
-            description="Veritatis porro accusamus debitis sunt, id aut vero aperiam. Reiciendis voluptatum neque aliquam reprehenderit? Fugiat illo reiciendis deleniti, dolore atque assumenda. Aliquid cum dolorem illo magni corrupti neque eos vero officia dolore porro."
-          />
-          <Item
-            videoSrc="https://www.youtube-nocookie.com/embed/AQCEb9HKO98?si=Uoq0LDvKnmORClQZ"
-            imageSrc="/geralt.webp"
-            title="Title"
-            description="Veritatis porro accusamus debitis sunt, id aut vero aperiam. Reiciendis voluptatum neque aliquam reprehenderit? Fugiat illo reiciendis deleniti, dolore atque assumenda. Aliquid cum dolorem illo magni corrupti neque eos vero officia dolore porro."
-          />
-          <Item
-            videoSrc="https://www.youtube-nocookie.com/embed/AQCEb9HKO98?si=Uoq0LDvKnmORClQZ"
-            imageSrc="/geralt.webp"
-            title="Title"
-            description="Veritatis porro accusamus debitis sunt, id aut vero aperiam. Reiciendis voluptatum neque aliquam reprehenderit? Fugiat illo reiciendis deleniti, dolore atque assumenda. Aliquid cum dolorem illo magni corrupti neque eos vero officia dolore porro."
-          />
+          {content.map((val) => (
+            <Item
+              key={val._id}
+              title={val.title}
+              description={val.description}
+              videoSrc={val.videoUrl}
+              imageSrc={val.image}
+            />
+          ))}
         </div>
       </motion.div>
     </ReactLenis>
@@ -153,7 +157,7 @@ const Item = ({
   videoSrc,
   description,
 }: {
-  imageSrc: string;
+  imageSrc: string | undefined;
   videoSrc: string;
   title: string;
   description: string;
@@ -233,13 +237,16 @@ const Item = ({
             init: { opacity: 0 },
             inView: { opacity: 1 },
           }}
-          className="not-md:absolute not-md:inset-0 not-md:h-full md:max-w-md"
+          className="relative h-full w-full not-md:absolute not-md:inset-0 not-md:h-full md:max-w-md"
         >
-          <img
-            className="h-full w-full object-contain object-top-right opacity-25 brightness-50 grayscale transition-all md:group-hover:opacity-50 md:group-hover:grayscale-0"
-            src={imageSrc}
-            alt=""
-          />
+          {imageSrc && (
+            <Image
+              className="absolute inset-0 h-full w-full object-contain object-center opacity-25 brightness-50 grayscale transition-all md:group-hover:opacity-50 md:group-hover:grayscale-0"
+              src={imageSrc}
+              fill
+              alt=""
+            />
+          )}
         </motion.div>
       </div>
     </motion.div>
