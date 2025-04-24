@@ -32,13 +32,13 @@ export type Content = {
 }[];
 
 export default async function Guestroom() {
-  let { data: spots }: { data: Content } = await sanityFetch({
+  const { data: spots }: { data: Content } = await sanityFetch({
     query: SPOTS_QUERY,
   });
-  let { data: projects }: { data: Content } = await sanityFetch({
+  const { data: projects }: { data: Content } = await sanityFetch({
     query: PROJECTS_QUERY,
   });
-  let { data: showreels }: { data: Content } = await sanityFetch({
+  const { data: showreels }: { data: Content } = await sanityFetch({
     query: SHOWREEL_QUERY,
   });
 
