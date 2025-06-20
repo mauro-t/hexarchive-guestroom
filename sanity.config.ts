@@ -11,6 +11,7 @@ import { structureTool } from "sanity/structure";
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schema } from "./sanity/schemaTypes";
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 const singletonTypes = new Set(["credits", "whatsThis"]);
@@ -32,13 +33,28 @@ export default defineConfig({
   },
   plugins: [
     structureTool({
-      structure: (S) =>
+      structure: (S, context) =>
         S.list()
           .title("Content")
           .items([
-            S.documentTypeListItem("project").title("Projects"),
-            S.documentTypeListItem("spot").title("Spots"),
-            S.documentTypeListItem("showreel").title("Showreel"),
+            orderableDocumentListDeskItem({
+              type: "project",
+              S,
+              context,
+              title: "Projects",
+            }),
+            orderableDocumentListDeskItem({
+              type: "spot",
+              S,
+              context,
+              title: "Spots",
+            }),
+            orderableDocumentListDeskItem({
+              type: "showreel",
+              S,
+              context,
+              title: "Showreel",
+            }),
             S.listItem()
               .title("Credits")
               .id("credits")

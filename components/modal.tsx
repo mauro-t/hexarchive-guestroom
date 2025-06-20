@@ -241,7 +241,7 @@ const Item = ({
         >
           {imageSrc && (
             <Image
-              className="absolute inset-0 h-full w-full object-contain object-center opacity-25 brightness-50 grayscale transition-all md:group-hover:opacity-50 md:group-hover:grayscale-0"
+              className="absolute inset-0 h-full w-full object-contain object-center brightness-50 grayscale transition-all md:opacity-25 md:group-hover:opacity-75 md:group-hover:grayscale-0"
               src={imageSrc}
               fill
               alt=""

@@ -19,9 +19,9 @@ const urlFor = (source: SanityImageSource) =>
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 
-const SPOTS_QUERY = defineQuery(`*[_type == "spot"]`);
-const PROJECTS_QUERY = defineQuery(`*[_type == "project"]`);
-const SHOWREEL_QUERY = defineQuery(`*[_type == "showreel"]`);
+const SPOTS_QUERY = defineQuery(`*[_type == "spot"]|order(orderRank)`);
+const PROJECTS_QUERY = defineQuery(`*[_type == "project"]|order(orderRank)`);
+const SHOWREEL_QUERY = defineQuery(`*[_type == "showreel"]|order(orderRank)`);
 const CREDITS_QUERY = defineQuery(`*[_type == "credits"]`);
 const WHATSTHIS_QUERY = defineQuery(`*[_type == "whatsThis"]`);
 
@@ -53,7 +53,7 @@ export default async function Guestroom() {
     await sanityFetch({
       query: WHATSTHIS_QUERY,
     });
-  console.log(credits[0]);
+
   return (
     <>
       <Header />
