@@ -66,15 +66,15 @@ export default async function Guestroom() {
       <Modal
         projects={projects.map((p) => ({
           ...p,
-          image: urlFor(p.image)?.url(),
+          image: p.image ? urlFor(p.image)?.url() : "",
         }))}
         spots={spots.map((p) => ({
           ...p,
-          image: urlFor(p.image)?.url(),
+          image: p.image ? urlFor(p.image)?.url() : "",
         }))}
         showreel={showreels.map((p) => ({
           ...p,
-          image: urlFor(p.image)?.url(),
+          image: p.image ? urlFor(p.image)?.url() : "",
         }))}
       />
     </>
