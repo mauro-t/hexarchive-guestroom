@@ -59,10 +59,18 @@ export default function Credits({
       <div className="w-full overflow-hidden opacity-75 transition-opacity md:opacity-20 md:group-hover:opacity-75">
         <motion.div ref={scope} className="flex grayscale">
           {credits.map((k) => (
-            <img key={k} className="w-1/3 max-w-xs flex-none" src={k} />
+            <img
+              key={k}
+              className="w-1/3 max-w-xs flex-none object-contain"
+              src={k}
+            />
           ))}
           {credits.map((k) => (
-            <img key={k} className="w-1/3 max-w-xs flex-none" src={k} />
+            <img
+              key={k}
+              className="w-1/3 max-w-xs flex-none object-contain"
+              src={k}
+            />
           ))}
         </motion.div>
       </div>
