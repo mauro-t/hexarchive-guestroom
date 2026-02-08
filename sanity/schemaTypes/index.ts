@@ -22,6 +22,43 @@ const testType = defineType({
   ],
 });
 
+const assets = defineType({
+  type: "document",
+  name: "assets",
+  title: "Assets",
+  fields: [
+    defineField({
+      name: "hand",
+      title: "Hand",
+      type: "image",
+    }),
+    defineField({
+      name: "projects_video",
+      title: "Projects Video",
+      type: "file",
+      options: {
+        accept: "video/*",
+      },
+    }),
+    defineField({
+      name: "spots_video",
+      title: "Spots Video",
+      type: "file",
+      options: {
+        accept: "video/*",
+      },
+    }),
+    defineField({
+      name: "showreels_video",
+      title: "Showreels Video",
+      type: "file",
+      options: {
+        accept: "video/*",
+      },
+    }),
+  ],
+});
+
 const projectType = defineType({
   type: "document",
   name: "project",
@@ -133,9 +170,14 @@ const whatsThis = defineType({
       type: "array",
       of: [{ type: "block" }],
     }),
+    defineField({
+      name: "services",
+      type: "array",
+      of: [{ type: "string" }],
+    }),
   ],
 });
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [projectType, spotType, showreelType, credits, whatsThis],
+  types: [projectType, spotType, showreelType, credits, whatsThis, assets],
 };

@@ -58,12 +58,29 @@ export default defineConfig({
             S.listItem()
               .title("Credits")
               .id("credits")
-              .child(S.document().schemaType("credits").documentId("credits")),
+              .child(
+                S.document()
+                  .schemaType("credits")
+                  .documentId("credits")
+                  .title("Credits"),
+              ),
             S.listItem()
               .title("What's this")
               .id("whatsThis")
               .child(
-                S.document().schemaType("whatsThis").documentId("whatsThis"),
+                S.document()
+                  .schemaType("whatsThis")
+                  .documentId("whatsThis")
+                  .title("What's this"),
+              ),
+            S.listItem()
+              .title("Assets")
+              .id("assets")
+              .child(
+                S.document()
+                  .schemaType("assets")
+                  .documentId("assets")
+                  .title("Assets"),
               ),
           ]),
     }),
