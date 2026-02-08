@@ -37,6 +37,15 @@ export default defineConfig({
         S.list()
           .title("Content")
           .items([
+            S.listItem()
+              .title("What Are You Looking For")
+              .id("whatAreYouLookingFor")
+              .child(
+                S.document()
+                  .schemaType("whatAreYouLookingFor")
+                  .documentId("whatAreYouLookingFor")
+                  .title("What Are You Looking For"),
+              ),
             orderableDocumentListDeskItem({
               type: "project",
               S,
